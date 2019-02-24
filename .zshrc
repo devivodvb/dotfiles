@@ -18,7 +18,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(npm, git, history, git flow, github, brew, bundler, osx, textmate, sublime, tmux, tmuxinator, z)
+plugins=(npm, git, history, git flow, github, brew, bundler, osx, textmate, sublime, tmux, tmuxinator, z, autojump, cp)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -37,7 +37,7 @@ export EDITOR=/usr/bin/vim
 source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status nvm rvm background_jobs ip ram battery)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time nvm rvm background_jobs ip ram battery)
 
 precmd() { print "" }
 

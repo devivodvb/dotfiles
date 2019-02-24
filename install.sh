@@ -41,13 +41,26 @@ ln -s $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
 # Ultimate VIM
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
+ln -s "$HOME/.dotfiles/my_configs.vim" "$HOME/.vim_runtime/my_configs.vim"
 
 # Powerline fonts download and setup
 git clone git@github.com:powerline/fonts.git ~/powerline-fonts
 ~/powerline-fonts/install.sh
 
-# AWS cli
-pip install awscli
+# Symlink CURL formatter for speed test
+ln -s "$HOME/.dotfiles/curl-format.txt" curl-format.txt
+
+# Security
+# Disable remote login
+sudo systemsetup -setremotelogin off
+# Disable wake-on modem
+sudo systemsetup -setwakeonmodem off
+# Disable wake-on LAN
+sudo systemsetup -setwakeonnetworkaccess off
+# Disable remote apple events
+sudo systemsetup -setremoteappleevents off
+sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
+
 
 # Set macOS preferences
 # We will run this last because this will reload the shell
