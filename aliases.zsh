@@ -67,7 +67,8 @@ alias gs="git status"
 alias gb="git branch"
 alias gc="git checkout"
 alias gd="git diff"
-alias gpush="git push"
+gpush() { git push origin $(git rev-parse --abbrev-ref HEAD) }
+gpull() { git pull origin $(git rev-parse --abbrev-ref HEAD) }
 alias gp="git pull; git submodule foreach git pull origin master"
 alias gfa="git fetch --all -p"
 alias gnuke="git clean -df && git reset --hard"
