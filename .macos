@@ -2,6 +2,8 @@
 
 # Thanks to Mathias Bynens! https://mths.be/macos
 
+echo "Setting up OSX, will ask for sudo password"
+
 # Ask for the administrator password upfront
 sudo -v
 
@@ -303,5 +305,3 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
 done
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
-
-

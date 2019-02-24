@@ -1,12 +1,24 @@
-# Shortcuts
+# General
 alias copyssh="pbcopy < $HOME/.ssh/id_rsa.pub"
 alias reloadcli="source $HOME/.zshrc"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
-alias ll="$(brew --prefix coreutils)/libexec/gnubin/ls -ahlF --color --group-directories-first"
-weather() { curl -4 wttr.in/${1:-antwerp} }
 alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
+
+# Files and directories
 alias c="clear"
+alias cp='cp -iv'                           # Preferred 'cp' implementation
+alias mv='mv -iv'                           # Preferred 'mv' implementation
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
+alias less='less -FSRXc'                    # Preferred 'less' implementation
+mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
+trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
+ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
+sizes () { du -hsc * | sort -h }
+alias s='sizes'
+countfiles() { ls -al | wc -l }
+alias cf='countfiles'
 
 # Directories
 alias dotfiles="cd $DOTFILES"
@@ -18,7 +30,7 @@ alias a="php artisan"
 alias ams="php artisan migrate:fresh --seed"
 
 # PHP
-alias cfresh="rm -rf vendor/ composer.lock && composer i"
+alias pst='phpstan analyse --level=max'
 
 # Vagrant
 alias v="vagrant global-status"
@@ -29,20 +41,120 @@ alias vreload="vagrant reload"
 alias vrebuild="vagrant destroy --force && vagrant up"
 
 # Docker
-alias docker-composer="docker-compose"
-#alias dstop="docker stop $(docker ps -a -q)"
-#alias dpurgecontainers="dstop && docker rm $(docker ps -a -q)"
-#alias dpurgeimages="docker rmi $(docker images -q)"
-#dbuild() { docker build -t=$1 .; }
-#dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
+alias dc="docker-compose"
+dstop() { docker stop $(docker ps -a -q) }
+dpurgecontainers() { dstop && docker rm $(docker ps -a -q) }
+dpurgeimages() { docker rmi $(docker images -q) }
+drma() {
+    echo "docker ps -a | tail -n+2 | awk '{print \$1}' | xargs docker rm -f ; docker volume ls | tail -n+2 | awk '{print \$2}' | xargs docker volume rm ; docker network ls | tail -n+2 | awk '{print \$2}' | xargs docker network rm" | pbcopy
+}
 
 # Git
 alias commit="git add . && git commit -m"
 alias gcommit="git add . && git commit"
 alias wip="commit wip"
 alias gst="git status"
+alias gs="git status"
 alias gb="git branch"
 alias gc="git checkout"
 alias gd="git diff"
+alias gp="git pull; git submodule foreach git pull origin master"
+alias gfa="git fetch --all -p"
 alias gl="git log --oneline --decorate --color"
 alias gnuke="git clean -df && git reset --hard"
+alias gdiff="git diff"
+alias gpdevelop="git pull origin develop"
+alias gpmaster="git pull origin master"
+alias gcdevelop="git checkout develop"
+alias gcontrib="git shortlog --summary --numbered"
+alias gl="git log --color --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an (%G?)>%Creset' --abbrev-commit"
+alias gh="log --graph --color --pretty=format:\"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n\""
+
+# Composer
+alias ci="composer install"
+alias cu="composer update"
+alias cfresh="rm -rf vendor/ composer.lock && composer i"
+
+# GPG
+gpgencrypt() {
+    gpg --encrypt --output $1.gpg --recipient idvbeek@gmail.com --sign $1
+    if [ $? -eq 0 ]; then
+        echo "File encrypted, deleting now: $1"
+        rm $1
+    fi
+}
+
+# Retrieves a public key from a private key
+get-public-key() {
+    ssh-keygen -y -f $1
+}
+
+# AWS
+aws-get-public-key() {
+    echo "$1"
+    openssl rsa -in "$1" -pubout
+}
+
+aws-get-public-key-signature() {
+    echo "$1"
+    openssl pkcs8 -in "$1" -inform PEM -outform DER -topk8 -nocrypt | openssl sha1 -c
+}
+
+# Miscellaneous
+fix-and-erase-usb-disk() {
+    diskutil eraseDisk free EMPTY $1
+}
+
+weather() { curl -4 wttr.in/${1:-amsterdam} }
+
+extract () {
+    if [ -f $1 ] ; then
+      case $1 in
+        *.tar.bz2)   tar xjf $1     ;;
+        *.tar.gz)    tar xzf $1     ;;
+        *.bz2)       bunzip2 $1     ;;
+        *.rar)       unrar e $1     ;;
+        *.gz)        gunzip $1      ;;
+        *.tar)       tar xf $1      ;;
+        *.tbz2)      tar xjf $1     ;;
+        *.tgz)       tar xzf $1     ;;
+        *.zip)       unzip $1       ;;
+        *.Z)         uncompress $1  ;;
+        *.7z)        7z x $1        ;;
+        *)     echo "'$1' cannot be extracted via extract()" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}
+
+# networking
+alias myip='curl ifconfig.io'                    # myip:         Public facing IP Address
+alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
+alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
+alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock:        Display open sockets
+alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
+alias lsockT='sudo /usr/sbin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
+alias ipInfo0='ipconfig getpacket en0'              # ipInfo0:      Get info on connections for en0
+alias ipInfo1='ipconfig getpacket en1'              # ipInfo1:      Get info on connections for en1
+alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
+alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rules inc/ blocked IPs
+httpheaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grabs headers from web page
+httpdebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup}\n connect: %{time_connect}\n pretransfer: %{time_pretransfer}\n starttransfer: %{time_starttransfer}\n total: %{time_total}\n" ; }
+
+ii() {
+    echo -e "\nYou are logged on ${RED}$HOST"
+    echo -e "\nAdditionnal information:$NC " ; uname -a
+    echo -e "\n${RED}Users logged on:$NC " ; w -h
+    echo -e "\n${RED}Current date :$NC " ; date
+    echo -e "\n${RED}Machine stats :$NC " ; uptime
+    echo -e "\n${RED}Current network location :$NC " ; scselect
+    echo -e "\n${RED}Public facing IP Address :$NC " ;myip
+    # echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
+    echo
+}
+
+# Sample files
+alias make1mb='mkfile 1m ./1MB.dat'         # make1mb:      Creates a file of 1mb size (all zeros)
+alias make5mb='mkfile 5m ./5MB.dat'         # make5mb:      Creates a file of 5mb size (all zeros)
+alias make10mb='mkfile 10m ./10MB.dat'      # make10mb:     Creates a file of 10mb size (all zeros)
