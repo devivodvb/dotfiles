@@ -39,6 +39,7 @@ alias ams="php artisan migrate:fresh --seed"
 
 # PHP
 alias pst='phpstan analyse --level=max'
+setphp() { echo "$1" > "$HOME/.php_version" && source "$HOME/.zshrc" }
 
 # Vagrant
 alias v="vagrant global-status"
