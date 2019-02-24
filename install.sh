@@ -17,6 +17,11 @@ brew bundle
 # Make ZSH the default shell environment
 chsh -s $(which zsh)
 
+# Check if PHP version file could be found, if not create it
+if [[ ! -f "$HOME/.php_version" ]]; then
+  echo "7.2" > "$HOME/.php_version"
+fi
+
 # Install Composer
 if test ! $(which composer); then
   curl -sS https://getcomposer.org/installer | php
