@@ -61,6 +61,9 @@ sudo systemsetup -setwakeonnetworkaccess off
 sudo systemsetup -setremoteappleevents off
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
 
+# Git hooks
+rm -rf "$HOME/.git-hooks"
+ln -s "$HOME/.dotfiles/git-hooks" "$HOME/.git-hooks"
 
 # Set macOS preferences
 # We will run this last because this will reload the shell
