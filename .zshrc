@@ -26,6 +26,8 @@ source $ZSH/oh-my-zsh.sh
 export DEFAULT_USER="$(whoami)"
 export EDITOR=/usr/bin/vim
 
+source "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -47,4 +49,8 @@ performance() {
     curl -w "@curl-format.txt" -o /dev/null -s "$1"
 }
 
-source "${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+[[ -s "$HOME/.autojump/etc/profile.d/autojump.sh" ]] && source "$HOME/.autojump/etc/profile.d/autojump.sh"
+
+autoload -U compinit && compinit -u
