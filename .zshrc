@@ -54,3 +54,5 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -s "$HOME/.autojump/etc/profile.d/autojump.sh" ]] && source "$HOME/.autojump/etc/profile.d/autojump.sh"
 
 autoload -U compinit && compinit -u
+
+for each in ~/.dotfiles.d/*.sh ; do source $each ; done
