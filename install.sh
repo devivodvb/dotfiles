@@ -51,6 +51,11 @@ ln -s "$HOME/.dotfiles/my_configs.vim" "$HOME/.vim_runtime/my_configs.vim"
 # Powerline fonts download and setup
 git clone git@github.com:powerline/fonts.git ~/powerline-fonts
 ~/powerline-fonts/install.sh
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/zsh-syntax-highlighting
+
+# ZSH Autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
 # Symlink CURL formatter for speed test
 ln -s "$HOME/.dotfiles/curl-format.txt" curl-format.txt
@@ -69,6 +74,10 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -boo
 # Git hooks
 rm -rf "$HOME/.git-hooks"
 ln -s "$HOME/.dotfiles/git-hooks" "$HOME/.git-hooks"
+
+git clone git://github.com/wting/autojump.git ~/autojump
+~/autojump
+./install.py
 
 # Set macOS preferences
 # We will run this last because this will reload the shell

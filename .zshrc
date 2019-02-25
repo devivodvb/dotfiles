@@ -18,13 +18,15 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(npm, git, history, git flow, github, brew, bundler, osx, textmate, sublime, tmux, tmuxinator, z, autojump, cp)
+plugins=(npm, git, history, git flow, github, brew, bundler, osx, textmate, sublime, tmux, tmuxinator, z, autojump, cp, symfony2, composer, laravel, zsh-autosuggestions, zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 export DEFAULT_USER="$(whoami)"
 export EDITOR=/usr/bin/vim
+
+source "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -47,4 +49,8 @@ performance() {
     curl -w "@curl-format.txt" -o /dev/null -s "$1"
 }
 
-source "${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+[[ -s "$HOME/.autojump/etc/profile.d/autojump.sh" ]] && source "$HOME/.autojump/etc/profile.d/autojump.sh"
+
+autoload -U compinit && compinit -u
