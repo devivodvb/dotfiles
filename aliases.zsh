@@ -8,6 +8,7 @@ alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+alias swagger-editor="docker run -d -p 37658:8080 swaggerapi/swagger-editor && echo Running on http://127.0.0.1:37658"
 
 # Files and directories
 alias c="clear"
@@ -57,6 +58,7 @@ dpurgeimages() { docker rmi $(docker images -q) }
 drma() {
     echo "docker ps -a | tail -n+2 | awk '{print \$1}' | xargs docker rm -f ; docker volume ls | tail -n+2 | awk '{print \$2}' | xargs docker volume rm ; docker network ls | tail -n+2 | awk '{print \$2}' | xargs docker network rm" | pbcopy
 }
+alias dps="docker ps"
 
 # Git
 alias commit="git add . && git commit -m"
@@ -67,9 +69,11 @@ alias gs="git status"
 alias gb="git branch"
 alias gc="git checkout"
 alias gd="git diff"
+alias gpa="git pull; git submodule foreach git pull origin master"
 gpush() { git push origin $(git rev-parse --abbrev-ref HEAD) }
 gpull() { git pull origin $(git rev-parse --abbrev-ref HEAD) }
 alias gp="git pull; git submodule foreach git pull origin master"
+alias gt="git tag -l --sort=-v:refname"
 alias gfa="git fetch --all -p"
 alias gnuke="git clean -df && git reset --hard"
 alias gdiff="git diff"
@@ -79,6 +83,7 @@ alias gcdevelop="git checkout develop"
 alias gcontrib="git shortlog --summary --numbered"
 alias gl="git log --color --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an (%G?)>%Creset' --abbrev-commit"
 alias gh="git log --graph --color --pretty=format:\"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n\""
+alias gwip="git add . && git commit -m 'wip'"
 
 # Composer
 alias ci="composer install"
