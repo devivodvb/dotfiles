@@ -75,9 +75,14 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -boo
 rm -rf "$HOME/.git-hooks"
 ln -s "$HOME/.dotfiles/git-hooks" "$HOME/.git-hooks"
 
+# Autojump
 git clone git://github.com/wting/autojump.git ~/autojump
 ~/autojump
 ./install.py
+
+if [[ ! -d ~/.dotfiles.d ]]; then
+  mkdir /.dotfiles.d
+fi
 
 # Set macOS preferences
 # We will run this last because this will reload the shell
