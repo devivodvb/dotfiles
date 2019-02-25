@@ -18,7 +18,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(npm, git, history, git flow, github, brew, bundler, osx, textmate, sublime, tmux, tmuxinator, z, autojump, cp)
+plugins=(npm, git, history, git flow, github, brew, bundler, osx, textmate, sublime, tmux, tmuxinator, z, autojump, cp, symfony2, composer, laravel, zsh-autosuggestions, zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
