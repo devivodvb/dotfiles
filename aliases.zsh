@@ -82,8 +82,8 @@ alias gpdevelop="git pull origin develop"
 alias gpmaster="git pull origin master"
 alias gcdevelop="git checkout develop"
 alias gcontrib="git shortlog --summary --numbered"
-alias gl="git log --color --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an (%G?)>%Creset' --abbrev-commit"
-alias gh="git log --graph --color --pretty=format:\"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n\""
+alias glog="git log --color --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an (%G?)>%Creset' --abbrev-commit"
+alias ghis="git log --graph --color --pretty=format:\"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n\""
 alias gwip="git add . && git commit -m 'wip'"
 
 # Composer
