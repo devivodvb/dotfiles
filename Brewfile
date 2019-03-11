@@ -84,6 +84,7 @@ brew 'ruby'
 brew 'terraform'
 brew 'terragrunt'
 brew 'tidy-html5'
+brew 'mysql'
 brew 'postgresql'
 
 # Apps
