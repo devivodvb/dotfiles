@@ -86,6 +86,7 @@ brew 'terragrunt'
 brew 'tidy-html5'
 brew 'mysql'
 brew 'postgresql'
+brew 'fzf'
 
 # Apps
 cask 'firefox'

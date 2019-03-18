@@ -56,3 +56,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 autoload -U compinit && compinit -u
 
 for each in ~/.dotfiles.d/*.sh ; do source $each ; done
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

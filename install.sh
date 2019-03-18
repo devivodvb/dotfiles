@@ -84,6 +84,9 @@ if [[ ! -d ~/.dotfiles.d ]]; then
   mkdir ~/.dotfiles.d
 fi
 
+# Install FZF
+/usr/local/opt/fzf/install
+
 # Set macOS preferences
 # We will run this last because this will reload the shell
 source .macos
