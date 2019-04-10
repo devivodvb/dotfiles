@@ -47,6 +47,7 @@ brew 'tree'
 brew 'zsh'
 brew 'zsh-completions'
 brew 'openssh'
+brew 'gnu-sed'
 
 # Development
 brew 'php'
