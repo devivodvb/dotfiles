@@ -94,7 +94,7 @@ alias cfresh="rm -rf vendor/ composer.lock && composer i"
 
 # GPG
 gpgencrypt() {
-    gpg --encrypt --output $1.gpg --recipient idvbeek@gmail.com --sign $1
+    gpg --encrypt --output $1.gpg --recipient 1C43133DA2E88DE66FCFB326882B8249ABA8474A --sign $1
     if [ $? -eq 0 ]; then
         echo "File encrypted, deleting now: $1"
         rm $1
