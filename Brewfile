@@ -47,6 +47,7 @@ brew 'tree'
 brew 'zsh'
 brew 'zsh-completions'
 brew 'openssh'
+brew 'gnu-sed'
 
 # Development
 brew 'php'
@@ -84,7 +85,9 @@ brew 'ruby'
 brew 'terraform'
 brew 'terragrunt'
 brew 'tidy-html5'
+brew 'mysql'
 brew 'postgresql'
+brew 'fzf'
 
 # Apps
 cask 'firefox'

@@ -17,6 +17,7 @@ alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
+alias sed="gsed"
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
@@ -65,26 +66,26 @@ alias dps="docker ps"
 alias commit="git add . && git commit -m"
 alias gcommit="git add . && git commit"
 alias wip="commit wip"
-alias gst="git status"
-alias gs="git status"
-alias gb="git branch"
-alias gc="git checkout"
-alias gd="git diff"
-alias gpa="git pull; git submodule foreach git pull origin master"
-gpush() { git push origin $(git rev-parse --abbrev-ref HEAD) }
-gpull() { git pull origin $(git rev-parse --abbrev-ref HEAD) }
-alias gp="git pull; git submodule foreach git pull origin master"
-alias gt="git tag -l --sort=-v:refname"
-alias gfa="git fetch --all -p"
-alias gnuke="git clean -df && git reset --hard"
-alias gdiff="git diff"
-alias gpdevelop="git pull origin develop"
-alias gpmaster="git pull origin master"
-alias gcdevelop="git checkout develop"
-alias gcontrib="git shortlog --summary --numbered"
-alias gl="git log --color --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an (%G?)>%Creset' --abbrev-commit"
-alias gh="git log --graph --color --pretty=format:\"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n\""
-alias gwip="git add . && git commit -m 'wip'"
+alias igst="git status"
+alias igs="git status"
+alias igb="git branch"
+alias igc="git checkout"
+alias igd="git diff"
+alias igpa="git pull; git submodule foreach git pull origin master"
+igpush() { git push origin $(git rev-parse --abbrev-ref HEAD) }
+igpull() { git pull origin $(git rev-parse --abbrev-ref HEAD) }
+alias igp="git pull; git submodule foreach git pull origin master"
+alias igt="git tag -l --sort=-v:refname"
+alias igfa="git fetch --all -p"
+alias ignuke="git clean -df && git reset --hard"
+alias igdiff="git diff"
+alias igpdevelop="git pull origin develop"
+alias igpmaster="git pull origin master"
+alias igcdevelop="git checkout develop"
+alias igcontrib="git shortlog --summary --numbered"
+alias igl="git log --color --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an (%G?)>%Creset' --abbrev-commit"
+alias igh="git log --graph --color --pretty=format:\"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n\""
+alias igwip="git add . && git commit -m 'wip'"
 
 # Composer
 alias ci="composer install"
@@ -93,7 +94,7 @@ alias cfresh="rm -rf vendor/ composer.lock && composer i"
 
 # GPG
 gpgencrypt() {
-    gpg --encrypt --output $1.gpg --recipient idvbeek@gmail.com --sign $1
+    gpg --encrypt --output $1.gpg --recipient 1C43133DA2E88DE66FCFB326882B8249ABA8474A --sign $1
     if [ $? -eq 0 ]; then
         echo "File encrypted, deleting now: $1"
         rm $1
